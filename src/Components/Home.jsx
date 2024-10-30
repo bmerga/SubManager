@@ -6,10 +6,13 @@ function Home() {
         <div className='home-first-page'>
            <div className='TCYDS'>
               <h1 className='Take-control'> Take Control of Your Digital Subscriptions</h1>
-              <p> Track, manage, and optimize all your Subscriptions in one place. 
+              <p className='Track'> Track, manage, and optimize all your Subscriptions in one place. 
                 Save money and never miss a payment again</p>
-              <button className='get-started'> Get Started Free</button>
-              <button className='learn-more'>Learn More</button>
+              <div className='get-learn-button container'>
+                 <button className='get-started'> Get Started Free</button>
+                 <button className='learn-more'>Learn More</button>
+              </div>
+             
               <p className='no-credit-card'> No credit card required. Free 14-day trial</p>
            </div>
            <div className='active-subscrption'>

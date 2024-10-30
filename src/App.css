@@ -1,20 +1,58 @@
 @import 'the-new-css-reset/css/reset.css';
 
-/* .home-first-page {
+.container {
+ padding: 35px;
+  border: solid 2px yellow;
+}
+.home-first-page {
+  padding-top: 50px;
   display: flex;
   flex-direction: row;
-} */
+  gap: 5%;
+  background-color: gray;
+}
 .TCYDS {
-  
+  display: flex;
+  flex-direction: column;
   border: dashed 5px red;
   display: flex;
   width: 50%;
- 
-  
+
 }
 .Take-control {
-  border: dashed 5px rgb(102, 48, 48);
-  /* width: 200px; */
-  /* font-size: 28px; */
+  border: dashed 2px rgb(102, 48, 48);
+  display: flex;
+  width: 100%;
+  font-size: 60px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.Track {
+  color: green;
+  font-size: 28px;
+}
+.get-learn-button container {
+  display: flex;
+  padding-right: 10%;
+}
+.get-started {
+  color: black;
+  font-size: 22px;
+  width:fit-content;
+  padding: 2%;
+  background-color: #55ca65; 
+  border-radius: 5px; 
+  cursor: pointer;
+}
+.learn-more {
+  color: black;
+  font-size: 22px;
+  width:fit-content;
+  padding: 2%;
+  background-color: whitesmoke; 
+  border-radius: 5px; 
+  cursor: pointer;
+}
+.active-subscrption {
+  border: dashed 2px green;
+  width: 50%;
 }
