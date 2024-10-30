@@ -16,7 +16,7 @@ function Home() {
               <p className='no-credit-card'> No credit card required. Free 14-day trial</p>
            </div>
            <div className='active-subscrption'>
-              <h6> Active subscrption</h6> <span> <h6>$84.00/month</h6></span>
+              <div className='active-subscription-month'> <p>Active subscrption</p> <p>$84.00/month</p></div> 
               <div className='Netflix'> <button className='Netflix-button'>Netflix Monthly</button>$12.00</div>
               <div className='Spotify'> <button className='Spotify-button'>Spotify Monthly</button>$9.99</div>
               <div className='Amazon-prime'> <button className='Amazon-prime-button'>Amazon Prime Monthly</button>$139</div>
