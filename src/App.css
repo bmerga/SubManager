@@ -5,50 +5,49 @@
   border: solid 2px yellow;
 }
 .home-first-page {
-  padding-top: 50px;
+  padding: 1%;
   display: flex;
   flex-direction: row;
   gap: 5%;
-  background-color: gray;
+  background-color: #E7F3E7;
 }
 .TCYDS {
   display: flex;
   flex-direction: column;
-  border: dashed 5px red;
   display: flex;
   width: 50%;
-
-}
+  }
 .Take-control {
-  border: dashed 2px rgb(102, 48, 48);
+  
   display: flex;
   width: 100%;
   font-size: 60px;
+  color: 25,850 hanqata;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .Track {
-  color: green;
+  color: #85B786;
   font-size: 28px;
 }
-.get-learn-button container {
+.get-learn-button-container {
   display: flex;
-  padding-right: 10%;
+  gap: 15%;
+  padding-bottom: 2%;
 }
 .get-started {
   color: black;
-  font-size: 22px;
+  font-size: 30px;
   width:fit-content;
   padding: 2%;
-  background-color: #55ca65; 
+  background-color: #1BE619; 
   border-radius: 5px; 
   cursor: pointer;
 }
 .learn-more {
   color: black;
-  font-size: 22px;
-  width:fit-content;
+  font-size: 30px;
   padding: 2%;
-  background-color: whitesmoke; 
+  background-color: #F8FCF8; 
   border-radius: 5px; 
   cursor: pointer;
 }

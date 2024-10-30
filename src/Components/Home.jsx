@@ -8,7 +8,7 @@ function Home() {
               <h1 className='Take-control'> Take Control of Your Digital Subscriptions</h1>
               <p className='Track'> Track, manage, and optimize all your Subscriptions in one place. 
                 Save money and never miss a payment again</p>
-              <div className='get-learn-button container'>
+              <div className='get-learn-button-container'>
                  <button className='get-started'> Get Started Free</button>
                  <button className='learn-more'>Learn More</button>
               </div>
