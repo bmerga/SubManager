@@ -1,0 +1,13 @@
+.simplify-wehelp {
+    display: flex;
+    flex-direction: column;
+    background-color: #E7F3E7;
+    text-align: center;
+    padding: 20px 0 50px;
+    
+}
+.simplify {     
+    
+    font-weight: bold;
+    font-size: larger;
+}
