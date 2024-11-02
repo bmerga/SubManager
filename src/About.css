@@ -4,10 +4,54 @@
     background-color: #E7F3E7;
     text-align: center;
     padding: 20px 0 50px;
-    
+        
 }
 .simplify {     
-    
-    font-weight: bold;
+    font-weight: bolder;
+    font-size: 30px;
+}
+.wehelp {
+    font-size: large;
+    margin-top: 0%;
+    color: #85B786;
+}
+.save-money-container {
+    display: flex;
+    padding: 70px;
+    gap: 8%;
+}
+.track-everything {
+    text-align: center;
+    font-weight: bolder;
     font-size: larger;
+}
+.monitor-all {
+    text-align: center;
+    color: #85B786;
+}
+.save-money {
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+}
+.identify-unused {
+    text-align: center;
+    color: #85B786;
+}
+.never-miss {
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+}
+.get-timely {
+    text-align: center;
+    color: #85B786;
+}
+.numbers {
+    display: flex;
+    background-color: #E7F3E7;
+    text-align: center;
+    padding: 20px 0 50px;  
+    justify-content: center;
+    gap: 25%;
 }

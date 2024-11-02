@@ -1,6 +1,6 @@
 import React from 'react'
 import '../App.css'
-import { Container, Grid2, Paper, styled, Typography, Box} from '@mui/material'
+import { Container, Paper, styled, Typography, Box} from '@mui/material'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
