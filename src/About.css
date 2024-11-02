@@ -45,13 +45,40 @@
 }
 .get-timely {
     text-align: center;
-    color: #85B786;
+    color: #91BC8F;
 }
 .numbers {
     display: flex;
     background-color: #E7F3E7;
     text-align: center;
-    padding: 20px 0 50px;  
+    padding: 60px 0 10px;  
     justify-content: center;
-    gap: 25%;
+    gap: 26%;
+}
+.fifty {
+    font-size: 30px;
+    font-weight:bolder;
+    color: #1BE619;
+    
+    
+}
+.two {
+    font-size: 30px;
+    font-weight:bolder;
+    color: #1BE619
+}
+.hundred {
+    font-size: 30px;
+    font-weight:bolder;
+    color: #1BE619
+}
+.active-users {
+    color: #91BC8F;
+      
+}
+.saved-users {
+    color: #91BC8F;
+}
+.subscription-managed {
+    color: #91BC8F;
 }
