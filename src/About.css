@@ -18,7 +18,9 @@
 .save-money-container {
     display: flex;
     padding: 70px;
-    gap: 8%;
+    padding-right: 80px;
+    padding-left: 25px;
+    gap: 9%;
 }
 .track-everything {
     text-align: center;
@@ -51,9 +53,9 @@
     display: flex;
     background-color: #E7F3E7;
     text-align: center;
-    padding: 60px 0 10px;  
+    padding: 60px 10px 20px;  
     justify-content: center;
-    gap: 26%;
+    gap: 27%;
 }
 .fifty {
     font-size: 30px;

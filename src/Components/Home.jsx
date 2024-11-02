@@ -1,6 +1,6 @@
 import React from 'react'
 import '../App.css'
-import { Container, Paper, styled, Typography, Box} from '@mui/material'
+import { Container, Paper, styled, Typography, Box, Button} from '@mui/material'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
@@ -14,10 +14,10 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 function Home() {
   return (
    <div>
-      <div style={{display:'flex', justifyContent:'flex-end', gap:'2%', fontSize:'53px'}}>
-          <button> About Us</button>
-          <button> Sign In</button>
-          <button> Start Free</button>
+      <div style={{display:'flex', justifyContent:'flex-end', gap:'10px',padding:'10px'}}>
+          <button style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> About Us</button>
+          <button style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder' }}> Sign In</button>
+          <button style={{ width: '95px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619', cursor:'pointer', fontSize:'15px', fontWeight:'bolder'}}> Start Free</button>
       </div>
      
     
@@ -40,36 +40,47 @@ function Home() {
               <Typography variant="h5" paddingTop={4} paddingBottom={5} fontWeight='bold'>Active Subscrption</Typography>
               <Typography variant="h5" paddingTop={4}>$84.00/month</Typography>
            </Box>
+          
            <StyledPaper>
-            <Box paddingLeft={10}>
-              <div style={{display:'flex', gap:'330px', alignItems:'center'}}>
-                <div>
-                  <Typography variant="h5">Netflix </Typography>
-                  <Typography variant="h5" color='#85B786'>Monthly</Typography>
-               </div>
-                <div><Typography variant="h5">$12.00</Typography></div>
-              </div>
-            </Box>
-           </StyledPaper> <br></br>
+              <Box>
+                 <div style={{ display: 'flex', gap: '340px', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                       <button style={{ width: '45px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619' }}></button>
+                       <div style={{paddingLeft:'10px'}}>
+                          <Typography variant="h5" style={{ marginLeft: '10px' }}>Netflix</Typography>
+                          <Typography variant="h5" color='#85B786' style={{ marginLeft: '10px' }}>Monthly</Typography>
+                       </div>
+                    </div>
+                   <div><Typography variant="h5">$12.00</Typography></div>
+                </div>
+             </Box>
+          </StyledPaper> <br></br>
            
-           <StyledPaper>
-            <Box paddingLeft={10}>
-               <div style={{display:'flex', gap:'340px', alignItems:'center'}}>
-               <div>
-                 <Typography variant="h5">Spotify</Typography>
-                 <Typography variant="h5" color='#85B786'>Monthly</Typography>
+          <StyledPaper>
+            <Box>
+               <div style={{display:'flex', gap:'355px', alignItems:'center'}}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                     <button style={{ width: '45px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619' }}></button>
+                     <div style={{paddingLeft:'15px'}}>   
+                        <Typography variant="h5">Spotify</Typography>
+                        <Typography variant="h5" color='#85B786'>Monthly</Typography>
+                     </div>   
                </div>
                  <div><Typography variant="h5">$9.99</Typography></div>
               </div>
            </Box>
            </StyledPaper> <br></br>
+
            <StyledPaper>
-            <Box paddingLeft={10}>
-               <div style={{display:'flex', gap:'240px', alignItems:'center'}}>
-                  <div>
-                     <Typography variant="h5">Amazon Prime </Typography>
-                     <Typography variant="h5" color='#85B786'>Annual</Typography>
-                  </div> 
+            <Box>
+               <div style={{display:'flex', gap:'257px', alignItems:'center'}}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                     <button style={{ width: '45px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619' }}></button>
+                     <div style={{paddingLeft:'15px'}}>   
+                        <Typography variant="h5">Amazon Prime </Typography>
+                        <Typography variant="h5" color='#85B786'>Annual</Typography>
+                    </div> 
+                  </div>
                  <div> <Typography variant="h5">$139.00</Typography></div>
                </div>
            </Box>
@@ -86,25 +97,25 @@ function Home() {
             <div style={{display:"flex", gap:"4%", padding:"5% 1%", }}>
             <StyledPaper>
                <Box>
-                    <button ><SignalCellularAltOutlinedIcon style={{fontSize:40, cursor: "hand", color: '#85B786'}} /></button> 
-                     <Typography variant="h4">Analytics Dashboard</Typography>
-                     <Typography variant="h5" color='#85B786'>Get detailed insights into your 
+                    <button style={{border:'none', borderRadius:'10px'}}><SignalCellularAltOutlinedIcon style={{fontSize:40, cursor: "hand", color: '#1BE619'}} /></button> 
+                     <Typography variant="h5" fontWeight='bolder'>Analytics Dashboard</Typography>
+                     <Typography variant="h6" color='#85B786'> Get detailed insights into your 
                      spending patterns and subscription usage.</Typography>     
               </Box>
             </StyledPaper> 
             <StyledPaper>
                <Box  >
-                   <button><NotificationsOutlinedIcon style={{fontSize:40, cursor: "hand", color: '#85B786'}} /></button>
-                  <Typography variant="h4">Smart Reminders</Typography>
-                  <Typography variant="h5" color='#85B786'>Never miss a payment with  
+                   <button style={{border:'none', borderRadius:'10px'}}><NotificationsOutlinedIcon style={{fontSize:40, cursor: "hand", color: '#1BE619'}} /></button>
+                  <Typography variant="h5" fontWeight='bolder'>Smart Reminders</Typography>
+                  <Typography variant="h6" color='#85B786'>Never miss a payment with  
                    automated notifications and renewal reminders.</Typography>
               </Box>
             </StyledPaper>
             <StyledPaper>
                <Box  >
-                  <button><MonetizationOnOutlinedIcon style={{fontSize:40, cursor: "hand", color: '#85B786'}} /> </button>
-                  <Typography variant="h4">Cost Optimazation</Typography>
-                  <Typography variant="h5" color='#85B786'>Get recomendations to reduce costs  
+                  <button style={{border:'none', borderRadius:'10px'}}><MonetizationOnOutlinedIcon style={{fontSize:40, cursor: "hand", color: '#1BE619'}} /> </button>
+                  <Typography variant="h5" fontWeight='bolder'>Cost Optimazation</Typography>
+                  <Typography variant="h6" color='#85B786'>Get recomendations to reduce costs  
                    and identify unused subscriptions.</Typography>
               </Box>
             </StyledPaper>

@@ -3,11 +3,16 @@ import  '../About.css'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';;
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 function Aboutus() {
   return (
     
         <div>
+           <div style={{display:'flex', justifyContent:'flex-end', padding:'15px', gap:'20px'}}>
+              <button style={{ border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Sign In</button>
+              <button style={{ borderRadius:'8px', background: '#1BE619', width: '95px', height: '45px', border: 'none', cursor:'pointer', fontWeight:'bolder'}}> Sign Up</button>
+          </div>
+
            <div className='simplify-wehelp'>
               <p className='simplify'> Simplify Your Digital Life </p>
               <p className='wehelp' > We help you take control of your subscriptions, save money, and never miss payment</p>
@@ -61,10 +66,81 @@ function Aboutus() {
                   </div>
                   
              </div>
-             <div>
-               <div>Meet Our Team</div>
-             </div>
+            <div style={{padding:'70px'}}>
+                <div style={{textAlign:'center', fontSize:'28px', fontWeight:'bolder'}}>Meet Our Team</div>
+               
+               <div style={{ padding:'40px', display:'flex', alignItems:'center',  justifyContent:'center', gap:'33%'}}>
+                  <div>
+                     <Box sx={{ color:'#1BE619', fontSize:'20px', borderRadius:'50%', width: 80, height:80, 
+                     backgroundColor: '#E7F3E7', display:'flex', alignItems:'center', justifyContent:'center'}}>JS</Box>
+                     <div style={{fontSize:'20px', fontWeight:'bolder'}}>John Smith</div>
+                     <div style={{color:'#91BC8F'}}>CEO & Founder</div>
+                 </div>
+                 <div>
+                    <Box sx={{ color:'#1BE619', fontSize:'20px', borderRadius:'50%', width: 80, height:80, 
+                     backgroundColor: '#E7F3E7', display:'flex', alignItems:'center', justifyContent:'center'}}>SD</Box>
+                    <div style={{fontSize:'20px', fontWeight:'bolder'}}>Sarah Davis</div>
+                    <div style={{color:'#91BC8F'}}>Head of Product</div>
+                 </div>
+                 <div>
+                   <Box sx={{ color:'#1BE619', fontSize:'20px', borderRadius:'50%', width: 80, height:80, backgroundColor: '#E7F3E7', 
+                     display:'flex', alignItems:'center', justifyContent:'center'}}>MR</Box>
+                   <div style={{fontSize:'20px', fontWeight:'bolder'}}>Mike Roberts</div>
+                   <div style={{color:'#91BC8F'}}>Lead Developer</div>
+                 </div>
+                 </div>
+
+              </div>
+               <div style={{ display: 'flex',padding:'40px' ,flexDirection:'column',  backgroundColor: '#E7F3E7', textAlign:'center'}}>
+                  <div style={{display:'flex',justifyContent:'center' ,fontWeight: 'bolder', fontSize: '30px'}}> Ready to Take Control? </div>
+               <div style={{display:'flex' ,paddingLeft:'25%', width:'45%'}}> Join thousands of users who have simplified their subscription management and saved money</div>
+               <div style={{display:'flex', paddingTop:'20px', paddingLeft:'42%'}}><button style={{padding:'13px', borderRadius:'8px',cursor:'pointer', fontSize:'16px', backgroundColor:'#1BE619',border:'none'}}>Get Started for Free</button></div>
             </div>
+            </div>
+
+            
+            {/* Footer */}
+            <Box sx={{padding: '40px', textAlign: 'center'}}>
+               <div style={{display:'flex',gap:'22%'}}> 
+                  <div style={{textAlign:'justify'}}>
+                     <div style={{fontWeight:'bolder'}}> Company</div> 
+                        <div style={{color:'#91BC8F'}}>
+                           <p>About Us</p>
+                           <p>Careers</p>
+                           <p>Press</p>
+                        </div>
+                  </div>
+                  <div style={{textAlign:'justify'}}>
+                     <div style={{fontWeight:'bolder'}}> Product</div> 
+                        <div style={{color:'#91BC8F'}}>
+                           <p>Features</p>
+                           <p>Pricing</p>
+                           <p>Security</p>
+                        </div>
+                  </div>
+                  <div style={{textAlign:'justify'}}>
+                     <div style={{fontWeight:'bolder'}}> Resources</div> 
+                        <div style={{color:'#91BC8F'}}>
+                           <p>Blog</p>
+                           <p>Help Center</p>
+                           <p>Contact</p>
+                        </div>
+                  </div>
+                  <div style={{textAlign:'justify'}}>
+                     <div style={{fontWeight:'bolder'}}> Legal</div> 
+                        <div style={{color:'#91BC8F'}}>
+                           <p>Privacy</p>
+                           <p>Terms</p>
+                           <p>Cookie Policy</p>
+                        </div>
+                  </div>
+               </div>                 
+               <Typography variant="body2" color="text.secondary">
+                    &copy; {new Date().getFullYear()} Acme Subscription Manager. All rights reserved.
+                </Typography>
+                
+            </Box>
+        
         </div>
        
     
