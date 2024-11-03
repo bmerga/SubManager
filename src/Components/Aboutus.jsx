@@ -4,15 +4,29 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';;
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import { Box, Typography } from '@mui/material';
+import { useNavigate } from 'react-router';
+
 function Aboutus() {
+   const navigate = useNavigate();
+   const handleHomeInClick = () => {
+      navigate('/')
+   }
+   const handleSignInClick = () => {
+      navigate('/signin')
+   }
+   const handleSignUpClick = () => {
+      navigate('/signup')
+   }
   return (
     
         <div>
-           <div style={{display:'flex', justifyContent:'flex-end', padding:'15px', gap:'20px'}}>
-              <button style={{ border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Sign In</button>
-              <button style={{ borderRadius:'8px', background: '#1BE619', width: '95px', height: '45px', border: 'none', cursor:'pointer', fontWeight:'bolder'}}> Sign Up</button>
-          </div>
-
+            <div style={{display:'flex', flexDirection:'row', gap:'68%'}}>
+              <p><button onClick={handleHomeInClick} style={{paddingLeft:'45px', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Acme Subscription Manager</button></p>
+              <div style={{display:'flex', gap:'20px'}}>
+              <button onClick={handleSignInClick} style={{ border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Sign In</button>
+              <button onClick={handleSignUpClick} style={{ borderRadius:'8px', background: '#1BE619', width: '95px', height: '45px', border: 'none', cursor:'pointer', fontWeight:'bolder'}}> Sign Up</button>
+              </div>
+            </div>
            <div className='simplify-wehelp'>
               <p className='simplify'> Simplify Your Digital Life </p>
               <p className='wehelp' > We help you take control of your subscriptions, save money, and never miss payment</p>
@@ -94,7 +108,7 @@ function Aboutus() {
                <div style={{ display: 'flex',padding:'40px' ,flexDirection:'column',  backgroundColor: '#E7F3E7', textAlign:'center'}}>
                   <div style={{display:'flex',justifyContent:'center' ,fontWeight: 'bolder', fontSize: '30px'}}> Ready to Take Control? </div>
                <div style={{display:'flex' ,paddingLeft:'25%', width:'45%'}}> Join thousands of users who have simplified their subscription management and saved money</div>
-               <div style={{display:'flex', paddingTop:'20px', paddingLeft:'42%'}}><button style={{padding:'13px', borderRadius:'8px',cursor:'pointer', fontSize:'16px', backgroundColor:'#1BE619',border:'none'}}>Get Started for Free</button></div>
+               <div style={{display:'flex', paddingTop:'20px', paddingLeft:'42%'}}><button onClick={handleSignUpClick} style={{padding:'13px', borderRadius:'8px',cursor:'pointer', fontSize:'16px', backgroundColor:'#1BE619',border:'none'}}>Get Started for Free</button></div>
             </div>
             </div>
 

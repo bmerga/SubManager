@@ -5,6 +5,9 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
 import StarIcon from '@mui/icons-material/Star';
+import { useNavigate } from 'react-router'; 
+
+
 const StyledPaper = styled(Paper)(({ theme }) => ({
    padding: theme.spacing(1), 
    backgroundColor: theme.palette.background.paper, 
@@ -12,14 +15,31 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 }));
 
 function Home() {
+   const navigate = useNavigate();
+   const handleHomeInClick = () => {
+      navigate('/')
+   }
+   const handleAboutUsClick = () => {
+      navigate('/aboutus')
+      }
+   const handleSignInClick = () => {
+      navigate('/signin')
+   }
+   const handleSignUpClick = () => {
+      navigate('/signup')
+   }
+ 
+
   return (
    <div>
-      <div style={{display:'flex', justifyContent:'flex-end', gap:'10px',padding:'10px'}}>
-          <button style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> About Us</button>
-          <button style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder' }}> Sign In</button>
-          <button style={{ width: '95px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619', cursor:'pointer', fontSize:'15px', fontWeight:'bolder'}}> Start Free</button>
+       <div style={{display:'flex', flexDirection:'row', gap:'62%'}}>
+          <p><button onClick={handleHomeInClick} style={{paddingLeft:'45px', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Acme Subscription Manager</button></p>
+         <div style={{display:'flex', justifyContent:'flex-end', gap:'10px'}}>
+            <button onClick={handleAboutUsClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> About Us</button>
+            <button onClick={handleSignInClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder' }}> Sign In</button>
+            <button onClick={handleSignUpClick} style={{ width: '95px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619', cursor:'pointer', fontSize:'15px', fontWeight:'bolder'}}> Start Free</button>
+         </div>
       </div>
-     
     
     <div className='container'>
         <div className='home-first-page'>
@@ -28,22 +48,22 @@ function Home() {
               <p className='Track'> Track, manage, and optimize all your Subscriptions in one place. 
                 Save money and never miss a payment again</p>
               <div className='get-learn-button-container'>
-                 <button className='get-started'> Get Started Free</button>
-                 <button className='learn-more'>Learn More</button>
+                 <button onClick={handleSignUpClick} className='get-started'> Get Started Free</button>
+                 <button onClick={handleAboutUsClick} className='learn-more'>Learn More</button>
               </div>
              
               <p className='no-credit-card'> No credit card required. Free 14-day trial</p>
            </div>
-           <Container>
+           <Container maxWidth='sm'>
             
-               <Box display="flex" gap={28} >
+               <Box display="flex" gap={22} >
               <Typography variant="h5" paddingTop={4} paddingBottom={5} fontWeight='bold'>Active Subscrption</Typography>
-              <Typography variant="h5" paddingTop={4}>$84.00/month</Typography>
+              <Typography variant="h5" color='#85B786' paddingTop={4}>$84.00/month</Typography>
            </Box>
           
            <StyledPaper>
               <Box>
-                 <div style={{ display: 'flex', gap: '340px', alignItems: 'center' }}>
+                 <div style={{ display: 'flex', gap: '300px', alignItems: 'center' }}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                        <button style={{ width: '45px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619' }}></button>
                        <div style={{paddingLeft:'10px'}}>
@@ -58,7 +78,7 @@ function Home() {
            
           <StyledPaper>
             <Box>
-               <div style={{display:'flex', gap:'355px', alignItems:'center'}}>
+               <div style={{display:'flex', gap:'315px', alignItems:'center'}}>
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                      <button style={{ width: '45px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619' }}></button>
                      <div style={{paddingLeft:'15px'}}>   
@@ -73,7 +93,7 @@ function Home() {
 
            <StyledPaper>
             <Box>
-               <div style={{display:'flex', gap:'257px', alignItems:'center'}}>
+               <div style={{display:'flex', gap:'215px', alignItems:'center'}}>
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                      <button style={{ width: '45px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619' }}></button>
                      <div style={{paddingLeft:'15px'}}>   

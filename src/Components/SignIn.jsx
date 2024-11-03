@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Paper, Box, styled, TextField} from '@mui/material';
+import { Check, CheckBox, CheckBoxOutlineBlank, CheckBoxOutlineBlankOutlined, CheckBoxOutlineBlankSharp, CheckBoxRounded, CheckCircle } from '@mui/icons-material';
 import { useNavigate } from 'react-router';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -8,7 +9,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     boxShadow: theme.shadows[3], 
  }));
 
-function SignUp() {
+function SignIn() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -44,42 +45,25 @@ function SignUp() {
     const handleSignUpClick = () => {
       navigate('/signup')
    }
-    
   return (
     <div>
        <div>
-           <div style={{display:'flex', flexDirection:'row', gap:'60%'}}>
-           <p><button onClick={handleHomeInClick} style={{paddingLeft:'45px', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Acme Subscription Manager</button></p>
-           <div style={{display:'flex', justifyContent:'flex-end',  gap:'20px'}}>
-              <button onClick={handleAboutUsClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> About Us</button>
-              <button onClick={handleSignInClick} style={{ border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Sign In</button>
-              <button onClick={handleSignUpClick} style={{ borderRadius:'8px', background: '#1BE619', width: '95px', height: '45px', border: 'none', cursor:'pointer', fontWeight:'bolder'}}> Sign Up</button>
-          </div>
-          </div>
+       <div style={{display:'flex', flexDirection:'row', gap:'62%'}}>
+       <p><button onClick={handleHomeInClick} style={{paddingLeft:'45px', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Acme Subscription Manager</button></p>
+       <div style={{display:'flex', justifyContent:'flex-end', gap:'10px'}}>
+          <button onClick={handleAboutUsClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> About Us</button>
+          <button onClick={handleSignInClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder' }}> Sign In</button>
+          <button onClick={handleSignUpClick} style={{ width: '95px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619', cursor:'pointer', fontSize:'15px', fontWeight:'bolder'}}> Start Free</button>
+      </div>
+      </div>
         </div> 
+        <div style={{textAlign:'center', padding:'19px'}}>
+            <div style={{fontSize:'28px', fontWeight:'bolder'}}>Sign in to your account</div>
+            <p style={{fontSize:'18px'}}>Manage all your subscriptions in one place</p>
+        </div>
         <div>
         <StyledPaper style={{ padding: '20px', width: '30%', margin: 'auto' }}>
             <form onSubmit={handleSubmit} >
-                <Box paddingBottom={2}>
-                <div style={{paddingBottom:'10px', fontWeight:'bolder', borderRadius:'50'}}> First Name</div> 
-                    <TextField 
-                        fullWidth 
-                        placeholder='Enter your first name'
-                        variant="outlined" 
-                        value={firstName} 
-                        onChange={(e) => setFirstName(e.target.value)} 
-                    />
-                </Box>
-                <Box marginBottom={2}>
-                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Last Name</div> 
-                    <TextField 
-                        fullWidth 
-                        placeholder='Enter your last name'
-                        variant="outlined" 
-                        value={lastName} 
-                        onChange={(e) => setLastName(e.target.value)} 
-                    />
-                </Box>
                 <Box marginBottom={2}>
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Email</div> 
                     <TextField 
@@ -95,17 +79,36 @@ function SignUp() {
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Password</div> 
                     <TextField 
                         fullWidth 
-                        placeholder='Create a password'
+                        placeholder='Enter your password'
                         variant="outlined" 
                         type="password"
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
                     />
                 </Box>
-                <button style={{ background:'#1BE619', width:'100%', height:'45px', fontWeight:'bolder', border:'none', borderRadius:'8px', cursor:'pointer'}}  type="submit" >Create Account</button>
+                <div> <CheckBoxOutlineBlankSharp/>Remember me</div>
+                <button style={{ 
+                    background:'#1BE619', 
+                    width:'100%', 
+                    height:'45px', 
+                    fontWeight:'bolder', 
+                    border:'none', 
+                    borderRadius:'8px', 
+                    cursor:'pointer'}}  
+                    type="submit" >
+                    Sign In
+                </button>
             </form>
-            <div style={{ marginTop: '10px', textAlign:'center' }}>
-                Already have an account? <button onClick={handleSignInClick} style={{border:'none', cursor:'pointer', fontWeight:'bolder'}}>Sign In</button>
+            <div style={{ 
+                marginTop: '10px', 
+                textAlign:'center' }}>
+                Don't have an account? 
+                <button onClick={handleSignUpClick} style={{
+                    border:'none', 
+                    cursor:'pointer', 
+                    fontWeight:'bolder'}}>
+                        Sign Up
+                </button>
             </div>
         </StyledPaper>
         </div> 
@@ -113,4 +116,5 @@ function SignUp() {
   )
 }
 
-export default SignUp
+export default SignIn
+
