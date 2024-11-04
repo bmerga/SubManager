@@ -22,15 +22,15 @@ function SignIn() {
             setError('Password must be at least 8 characters long.');
             return;
         }
-        // Call the onSubmit prop with form data
+        
         onSubmit({ firstName, lastName, email, password });
         
-        // Reset form fields
+       
         setFirstName('');
         setLastName('');
         setEmail('');
         setPassword('');
-        setError(''); // Clear any previous error messages 
+        setError('');  
     };
     const navigate = useNavigate();
     const handleHomeInClick = () => {
