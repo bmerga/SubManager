@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { Paper, Box, styled, TextField} from '@mui/material';
-import { Check, CheckBox, CheckBoxOutlineBlank, CheckBoxOutlineBlankOutlined, CheckBoxOutlineBlankSharp, CheckBoxRounded, CheckCircle } from '@mui/icons-material';
+import { Check, CheckBox, CheckBoxOutlineBlank, CheckBoxOutlineBlankOutlined, CheckBoxOutlineBlankSharp, CheckBoxRounded, CheckCircle, Try } from '@mui/icons-material';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1), 
@@ -10,41 +11,34 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
  }));
 
 function SignIn() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-           if (password.length < 8) {
-            setError('Password must be at least 8 characters long.');
-            return;
-        }
-        
-        onSubmit({ firstName, lastName, email, password });
-        
-       
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-        setError('');  
-    };
+    
     const navigate = useNavigate();
-    const handleHomeInClick = () => {
-        navigate('/')
-     }
-    const handleAboutUsClick = () => {
-      navigate('/aboutus')
-      }
-    const handleSignInClick = () => {
-      navigate('/signin')
-    }
-    const handleSignUpClick = () => {
-      navigate('/signup')
-   }
+
+    const handleHomeInClick = () => {navigate('/')}
+    const handleAboutUsClick = () => {navigate('/aboutus')}
+    const handleSignInClick = () => {navigate('/signin')}
+    const handleSignUpClick = () => {navigate('/signup')}
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+           const response = await axios.post('https://zafrino-5e5b8bdb623d.herokuapp.com/api/auth/local', {
+              identifier: email, password
+           });
+           console.log('Sign-in succesfull!', response.data)
+           navigate('/newsubscription');
+          
+        } catch (error) {
+            console.error('Error signing-in!', error.response ? error.response.data: error.message);
+            setError('Sign-in failed! Try again.')
+        }
+    };
+            
+    
   return (
     <div>
        <div>
