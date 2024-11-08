@@ -8,13 +8,14 @@ import Subscription from './Components/Subscription';
 import NewSubscription from './Components/Newsubscription';
 import React from 'react'
 import './App.css'
-
+import { FooterProvider } from './Components/FooterContext';
+import Footer from './Components/Footer';
 
 function App() {
   
 
   return (
-    <>
+    <FooterProvider>
     <Router>
       <Routes>
         <Route path='/' element={<Home />}/>
@@ -25,8 +26,10 @@ function App() {
         <Route path='/subscription' element={<Subscription />}/>
         <Route path='/newsubscription' element={<NewSubscription />}/>
       </Routes>
+      <Footer/>
     </Router>
-    </>
+    
+    </FooterProvider>
     
   )
 }
