@@ -1,17 +1,15 @@
 import React, {useState} from 'react';
 import { Paper, Box, styled, TextField} from '@mui/material';
-import { Check, CheckBox, CheckBoxOutlineBlank, CheckBoxOutlineBlankOutlined, CheckBoxOutlineBlankSharp, CheckBoxRounded, CheckCircle, Try } from '@mui/icons-material';
+import { CheckBoxOutlineBlankSharp } from '@mui/icons-material';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(1), 
-    backgroundColor: theme.palette.background.paper, 
-    boxShadow: theme.shadows[3], 
+   
  }));
 
 function SignIn() {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     
@@ -27,7 +25,7 @@ function SignIn() {
 
         try {
            const response = await axios.post('https://zafrino-5e5b8bdb623d.herokuapp.com/api/auth/local', {
-              identifier: email, password
+              username, password
            });
            console.log('Sign-in succesfull!', response.data)
            navigate('/newsubscription');
@@ -59,14 +57,13 @@ function SignIn() {
         <StyledPaper style={{ padding: '20px', width: '30%', margin: 'auto' }}>
             <form onSubmit={handleSubmit} >
                 <Box marginBottom={2}>
-                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Email</div> 
+                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Username</div> 
                     <TextField 
                         fullWidth 
-                        placeholder='Enter your email'
+                        placeholder='Enter your username'
                         variant="outlined" 
-                        type="email"
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
+                        value={username} 
+                        onChange={(e) => setUsername(e.target.value)} 
                     />
                 </Box>
                 <Box marginBottom={2}>

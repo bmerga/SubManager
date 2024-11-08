@@ -4,15 +4,14 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(2), 
-    backgroundColor: theme.palette.background.paper, 
-    boxShadow: theme.shadows[3], 
+    
  }));
 
 function SignUp() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
@@ -35,6 +34,7 @@ function SignUp() {
                 firstName,
                 lastName,
                 email,
+                username,
                 password
                });
             console.log('Registration successful!', response.data);
@@ -42,6 +42,7 @@ function SignUp() {
             setFirstName('');
             setLastName('');
             setEmail('');
+            setUsername('');
             setPassword('');
             } catch (error) {
             console.error('Error signing up:', error.response ? error.response.data: error.message);
@@ -91,6 +92,16 @@ function SignUp() {
                         type="email"
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)} 
+                        required
+                    />
+                </Box>
+                <Box marginBottom={2}>
+                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Username</div> 
+                    <TextField 
+                        fullWidth 
+                        placeholder='Enter your username'
+                        value={username} 
+                        onChange={(e) => setUsername(e.target.value)} 
                         required
                     />
                 </Box>
