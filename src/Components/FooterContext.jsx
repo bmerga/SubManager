@@ -1,4 +1,4 @@
-import React, {Children, createContext, useState} from 'react'
+import React, {createContext, useState} from 'react'
 import { Box, Typography } from '@mui/material';
 
 export const FooterContext = createContext();
