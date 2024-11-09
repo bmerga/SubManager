@@ -28,7 +28,7 @@ function SignIn() {
               username, password
            });
            console.log('Sign-in succesfull!', response.data)
-           navigate('/newsubscription');
+           navigate('/');
           
         } catch (error) {
             console.error('Error signing-in!', error.response ? error.response.data: error.message);
@@ -77,7 +77,7 @@ function SignIn() {
                         onChange={(e) => setPassword(e.target.value)} 
                     />
                 </Box>
-                <div> <CheckBoxOutlineBlankSharp/>Remember me</div>
+                <div style={{display:'flex', alignItems:'center'}}> <CheckBoxOutlineBlankSharp/>Remember me</div>
                 <button style={{ 
                     background:'#1BE619', 
                     width:'100%', 
