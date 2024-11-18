@@ -5,7 +5,7 @@ import SignUp from './Components/SignUp';
 import SignIn from './Components/SignIn';
 import Profile from './Components/Profile';
 import Subscription from './Components/Subscription';
-import NewSubscription from './Components/Newsubscription';
+import Form from './Components/Form';
 import React from 'react'
 import './App.css'
 import { FooterProvider } from './Components/FooterContext';
@@ -24,7 +24,8 @@ function App() {
         <Route path='/signin' element={<SignIn />}/>
         <Route path='/profile' element={<Profile />}/>
         <Route path='/subscription' element={<Subscription />}/>
-        <Route path='/newsubscription' element={<NewSubscription />}/>
+        <Route path='/form' element={<Form />}/>
+        <Route path='*' element={<h2> Page Not Found</h2>}/>
       </Routes>
       <Footer/>
     </Router>

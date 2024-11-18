@@ -53,14 +53,14 @@ function SignUp() {
      
   return (
     <div>
-       <div style={{display:'flex', flexDirection:'row', gap:'60%'}}>
+       <nav style={{display:'flex', flexDirection:'row', gap:'60%'}}>
           <p><button onClick={handleHomeInClick} style={{paddingLeft:'45px', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Acme Subscription Manager</button></p>
           <div style={{display:'flex', justifyContent:'flex-end',  gap:'20px'}}>
              <button onClick={handleAboutUsClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> About Us</button>
              <button onClick={handleSignInClick} style={{ border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Sign In</button>
-             <button onClick={handleSignUpClick} style={{ borderRadius:'8px', background: '#1BE619', width: '95px', height: '45px', border: 'none', cursor:'pointer', fontWeight:'bolder'}}> Sign Up</button>
+             <button onClick={handleSignUpClick} style={{ borderRadius:'8px', background: '#1BE619', width: '95px', height: '45px', border: 'none', cursor:'pointer', fontWeight:'bolder'}}> Start Free</button>
           </div>
-       </div> 
+       </nav> 
        <div>
           <StyledPaper style={{ padding: '20px', width: '30%', margin: 'auto' }}>
              <form onSubmit={handleSubmit} >
@@ -110,7 +110,8 @@ function SignUp() {
                     <TextField 
                         fullWidth 
                         placeholder='Create a password'
-                        type="password"
+                        type="password" 
+                        InputProps={{}}
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
                         required

@@ -20,13 +20,13 @@ function Aboutus() {
   return (
     
         <div>
-            <div style={{display:'flex', flexDirection:'row', gap:'68%'}}>
+            <nav style={{display:'flex', flexDirection:'row', gap:'68%'}}>
               <p><button onClick={handleHomeInClick} style={{paddingLeft:'45px', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Acme Subscription Manager</button></p>
               <div style={{display:'flex', gap:'20px'}}>
               <button onClick={handleSignInClick} style={{ border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Sign In</button>
               <button onClick={handleSignUpClick} style={{ borderRadius:'8px', background: '#1BE619', width: '95px', height: '45px', border: 'none', cursor:'pointer', fontWeight:'bolder'}}> Sign Up</button>
               </div>
-            </div>
+            </nav>
            <div className='simplify-wehelp'>
               <p className='simplify'> Simplify Your Digital Life </p>
               <p className='wehelp' > We help you take control of your subscriptions, save money, and never miss payment</p>

@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 export const FooterContext = createContext();
 
 export const FooterProvider = ({children}) => {
-    const [footerContent] = useState(
+       const [footerContent] = useState(
         <Box sx={{padding: '40px', textAlign: 'center'}}>
         <div style={{display:'flex',gap:'22%'}}> 
            <div style={{textAlign:'justify'}}>

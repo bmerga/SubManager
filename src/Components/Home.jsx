@@ -1,6 +1,6 @@
 import React from 'react'
 import '../App.css'
-import { Container, Paper, styled, Typography, Box, Button} from '@mui/material'
+import {Container, Paper, styled, Typography, Box, Button} from '@mui/material'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
@@ -32,14 +32,14 @@ function Home() {
 
   return (
    <div>
-       <div style={{display:'flex', flexDirection:'row', gap:'62%'}}>
+       <nav style={{display:'flex', flexDirection:'row', gap:'62%'}}>
           <p><button onClick={handleHomeInClick} style={{paddingLeft:'45px', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Acme Subscription Manager</button></p>
          <div style={{display:'flex', justifyContent:'flex-end', gap:'10px'}}>
             <button onClick={handleAboutUsClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> About Us</button>
             <button onClick={handleSignInClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder' }}> Sign In</button>
             <button onClick={handleSignUpClick} style={{ width: '95px', height: '45px', borderRadius:'8px',border: 'none', background: '#1BE619', cursor:'pointer', fontSize:'15px', fontWeight:'bolder'}}> Start Free</button>
          </div>
-      </div>
+      </nav>
     
     <div className='container'>
         <div className='home-first-page'>
