@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 function Subscription() {
    const [activeSubscriptions, setActiveSubscriptions] = useState([]);
@@ -13,10 +15,9 @@ function Subscription() {
       const fetchSubscriptions = async () => {
          try { 
             const response = await axios.get('https://zafrino-5e5b8bdb623d.herokuapp.com/api/subscriptions');
-            console.log('Response data:', response.data)
             const subscriptions = response.data.data;
-            const active =subscriptions.filter(sub => sub.attributes.status.toLowerCase() ==='active');
-            const inactive = subscriptions.filter(sub => sub.attributes.status.toLowerCase() ==='inactive');
+            const active =subscriptions.filter(sub => sub.attributes.status ==='active');
+            const inactive = subscriptions.filter(sub => sub.attributes.status ==='inactive');
             setActiveSubscriptions(active);
             setInActiveSubscriptions(inactive);
             }
@@ -32,7 +33,8 @@ function Subscription() {
    const handleSubscriptionsClick = () => {navigate('/form')}
    const handleAboutUsClick = () => {navigate('/aboutus')}
    const handleSignOutClick = () => {navigate('/signin')}
-   const handleNewSubscription = () => {navigate('/form')}      
+   const handleNewSubscription = () => {navigate('/form')} 
+   const handleProfileClick = () => {navigate('/profile')}     
 
    const handleEditSubscription = async(id) => {
       try {
@@ -58,7 +60,7 @@ function Subscription() {
   return (
     <div>
       <nav 
-         style={{display:'flex', flexDirection:'row', gap:'59%'}}>
+         style={{display:'flex', flexDirection:'row', gap:'55%'}}>
             <button onClick={handleHomeInClick} 
             style={{paddingLeft:'4%', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}>
             Acme Subscription Manager
@@ -75,6 +77,13 @@ function Subscription() {
             <button onClick={handleAboutUsClick} 
             style={{border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> 
             About Us
+            </button>
+            <button style={{border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder' }}>
+           <SearchOutlinedIcon/>
+            </button>
+            <button onClick={handleProfileClick} 
+            style={{border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> 
+            <AccountCircleRoundedIcon/>
             </button>
          </div>
       </nav>

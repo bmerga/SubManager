@@ -36,7 +36,7 @@ function SignUp() {
                 email,
                 username,
                 password
-               });
+               }); console.log(response.data)
             console.log('Registration successful!', response.data);
             navigate('/signin');
             setFirstName('');
@@ -111,7 +111,6 @@ function SignUp() {
                         fullWidth 
                         placeholder='Create a password'
                         type="password" 
-                        InputProps={{}}
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
                         required
