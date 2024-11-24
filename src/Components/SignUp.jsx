@@ -1,20 +1,25 @@
 import React, {useState} from 'react';
 import { Paper, Box, styled, TextField} from '@mui/material';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { publicApi } from './api/publicApi';
+import CONSTANTS from '../constants';
+import { toast } from 'react-toastify';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
     
  }));
 
 function SignUp() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const initData = {
+        firstname: "",
+        lastname: "",
+        email: "",
+        username: "",
+        password: "",
+    };
 
+    const [signUpData, setSignUpData] = useState(initData);
+    
     const navigate = useNavigate();
 
     const handleHomeInClick = () => {navigate('/')}
@@ -22,31 +27,19 @@ function SignUp() {
     const handleSignInClick = () => {navigate('/signin')}
     const handleSignUpClick = () => {navigate('/signup')}
 
+    const handleChange = (e) => {
+        setSignUpData({...signUpData, [e.target.name]: e.target.value})
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        if (password.length < 8) {
-            setError('Password must be at least 8 characters long.');
-            return;
-        }
         try {        
-            const response = await axios.post('https://zafrino-5e5b8bdb623d.herokuapp.com/api/auth/local/register', {
-                firstName,
-                lastName,
-                email,
-                username,
-                password
-               }); console.log(response.data)
-            console.log('Registration successful!', response.data);
-            navigate('/signin');
-            setFirstName('');
-            setLastName('');
-            setEmail('');
-            setUsername('');
-            setPassword('');
+           await publicApi.post(CONSTANTS.SIGN_UP_PATH, signUpData);
+           toast('Succesfull!')
+           setSignUpData(initData);
+           navigate("/signin")
             } catch (error) {
-            console.error('Error signing up:', error.response ? error.response.data: error.message);
-                setError('Error! Please try again.');
+           toast(error.message);
             }
         };
     
@@ -68,9 +61,11 @@ function SignUp() {
                 <div style={{paddingBottom:'10px', fontWeight:'bolder', borderRadius:'50'}}> First Name</div> 
                    <TextField 
                       fullWidth 
+                      id='firstname'
+                      name='firstname'
                       placeholder='Enter your first name'
-                      value={firstName} 
-                      onChange={(e) => setFirstName(e.target.value)}
+                      value={signUpData.firstname} 
+                      onChange={handleChange}
                       required 
                     />
                 </Box>
@@ -78,9 +73,11 @@ function SignUp() {
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Last Name</div> 
                     <TextField 
                         fullWidth 
+                        id='lastname'
+                        name='lastname'
                         placeholder='Enter your last name'
-                        value={lastName} 
-                        onChange={(e) => setLastName(e.target.value)} 
+                        value={signUpData.lastname} 
+                        onChange={handleChange} 
                         required
                     />
                 </Box>
@@ -88,10 +85,12 @@ function SignUp() {
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Email</div> 
                     <TextField 
                         fullWidth 
-                        placeholder='Enter your email'
+                        id='email'
+                        name='email'
                         type="email"
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
+                        placeholder='Enter your email'
+                        value={signUpData.email} 
+                        onChange={handleChange} 
                         required
                     />
                 </Box>
@@ -99,9 +98,11 @@ function SignUp() {
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Username</div> 
                     <TextField 
                         fullWidth 
+                        id='username'
+                        name='username'
                         placeholder='Enter your username'
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)} 
+                        value={signUpData.username} 
+                        onChange={handleChange} 
                         required
                     />
                 </Box>
@@ -109,12 +110,16 @@ function SignUp() {
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Password</div> 
                     <TextField 
                         fullWidth 
+                        id='password'
+                        name='password'
+                        type="password"
+                        // inputProps={{ minLength: 8 }}
                         placeholder='Create a password'
-                        type="password" 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
+                        value={signUpData.password} 
+                        onChange={handleChange} 
                         required
                     />
+                    <p> Password must be at least 8 characters</p>
                 </Box>
                 <button style={{ background:'#1BE619', width:'100%', height:'45px', fontWeight:'bolder', border:'none', borderRadius:'8px', cursor:'pointer'}}  type="submit" >Create Account</button>
             </form>

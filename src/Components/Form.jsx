@@ -5,15 +5,20 @@ import axios from 'axios';
 
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(2),
-  margin: 'auto',
+    padding: theme.spacing(2),
+    margin: theme.spacing(1),
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    boxShadow: theme.shadows[3],
 }));
 
 function Form() {
   const [serviceName, setServiceName] = useState('');
   const [amount, setAmount] = useState('');
-  const [Period, setPeriod] = useState('');
-  const [nextBilling, setNextBilling] = useState('');
+  const [period, setPeriod] = useState('');
+  const [startDate, setStartDate] = useState('');
   const [status, setStatus] = useState('active');
   const [payment, setPayment] = useState('');
   const [error, setError] = useState('')
@@ -26,14 +31,14 @@ function Form() {
      
     try {        
         const response = await axios.post('https://zafrino-5e5b8bdb623d.herokuapp.com/api/subscription', {
-           serviceName, amount, Period, nextBilling, status, payment           
+           serviceName, amount, period, startDate, status, payment           
                 });
         console.log('New subscription successful!', response.data);
         navigate('/subscription');
         setServiceName('');
         setAmount('');
         setPeriod('');
-        setNextBilling('');
+        setStartDate('');
         setStatus('Inactive');
         setPayment('');
         } catch (error) {
@@ -48,7 +53,7 @@ function Form() {
     setServiceName('');
     setAmount('');
     setPeriod('');
-    setNextBilling('');
+    setStartDate('');
     setStatus('Inactive');
     setPayment('');
 };
@@ -60,12 +65,13 @@ return (
           style={{paddingLeft:'45px', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> 
           Acme Subscription Manager</button>
         </nav>
-       <div style={{padding:'60px'}}>
-        <StyledPaper sx={{width: '60%', margin: '0 auto'}} >
-            <form onSubmit={handleNewSubscription}>
-                <Box paddingBottom={3}>
+       <div style={{padding:'10px'}}>
+        <StyledPaper sx={{width: '60%', margin: '0 auto', borderRadius:'15px'}} >
+            <form onSubmit={handleNewSubscription} style={{width: '90%', textAlign:'left'}}>
+                <Box paddingBottom={3} >
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Service</div> 
-                    <TextField 
+                    <TextField      
+                    sx={{borderRadius:'15px'}}                                    
                         fullWidth 
                         placeholder='Enter service name'
                         variant="outlined" 
@@ -79,7 +85,7 @@ return (
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Amount</div> 
                     <TextField 
                         fullWidth 
-                        placeholder='$0.00'
+                        placeholder= '$0.00'
                         variant="outlined" 
                         type="number"
                         value={amount} 
@@ -89,13 +95,27 @@ return (
                 </Box>
                 <Box marginBottom={3}>
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}>Period</div> 
+                    <TextField select
+                        fullWidth 
+                        variant="outlined" 
+                        value={period} 
+                        onChange={(e) => setPeriod(e.target.value)} 
+                        required
+                        >
+                        <MenuItem value='monthly'>Monthly</MenuItem>
+                        <MenuItem value='yearly'>Yearly</MenuItem>
+                    </TextField>
+                
+                </Box>
+                <Box marginBottom={3}>
+                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}>Start date</div> 
                     <TextField 
                         fullWidth 
                         placeholder='mm/dd/yy'
                         variant="outlined" 
                         type="date"
-                        value={Period} 
-                        onChange={(e) => setPeriod(e.target.value)} 
+                        value={startDate} 
+                        onChange={(e) => setStartDate(e.target.value)} 
                         required
                     />
                 </Box>
