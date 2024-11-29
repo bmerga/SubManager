@@ -1,33 +1,38 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
-import axios from 'axios';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import { authApi } from './api/authApi';
+import CONSTANTS from '../constants';
+import { toast } from 'react-toastify';
+
 
 function Subscription() {
    const [activeSubscriptions, setActiveSubscriptions] = useState([]);
    const [inActiveSubscriptions, setInActiveSubscriptions] = useState([]);
-   const [error, setError] = useState('');
-   
+      
    const navigate = useNavigate();
 
-   useEffect(() => {
-      const fetchSubscriptions = async () => {
-         try { 
-            const response = await axios.get('https://zafrino-5e5b8bdb623d.herokuapp.com/api/subscriptions');
-            const subscriptions = response.data.data;
-            const active =subscriptions.filter(sub => sub.attributes.status ==='active');
-            const inactive = subscriptions.filter(sub => sub.attributes.status ==='inactive');
-            setActiveSubscriptions(active);
-            setInActiveSubscriptions(inactive);
+   useEffect(() => {      
+      fetchSubscriptions();
+         }, []);
+   const fetchSubscriptions = async () => {
+      try { 
+         const response = await authApi.get(CONSTANTS.SUBSCRIPTIONS_PATH); 
+         const subscriptions = response.data.data.map((item) => ({ ...item.attributes, id: item.id }))
+         // .map((data) => ({...data, nextBilling: calculateNextBillingDate(
+         //     data.start_date, data.period, "'ll'" ),
+         // })) 
+         const active =subscriptions.filter(data => data.status ==='active'); 
+         const inactive = subscriptions.filter(data => data.status ==='inactive');
+         setActiveSubscriptions(active);
+         setInActiveSubscriptions(inactive);
             }
          catch (error) {
-            console.error('Error fetching active subscription:', error.response ? error.response.data : error.message);
-            setError('Error! Please try again.');
+            toast(error.message);
                }
-      };
-         fetchSubscriptions();
-         }, []);
+            }
+         
 
    const handleHomeInClick = () => {navigate('/')};
    const handleSubscriptionsClick = () => {navigate('/form')}
@@ -38,25 +43,23 @@ function Subscription() {
 
    const handleEditSubscription = async(id) => {
       try {
-         const response = await axios.get(`https://zafrino-5e5b8bdb623d.herokuapp.com/api/subscriptions/${id}`)
+         const response = await authApi.put(`${CONSTANTS.SUBSCRIPTIONS_PATH}/${id}`)
          navigate('/form', {state: {subscription: response.data}})
       } catch (error) {
-         console.error ('Error fetching edit form:', error.response? error.response.data: error.message)
-         setError('Error! Please try again!')
+         toast("error.message")
          }
             }
    const handleDeleteSubscription = async(id) => {
       try {
-         await axios.delete(`https://zafrino-5e5b8bdb623d.herokuapp.com/api/subscriptions/${id}`)
+         await authApi.delete(`${CONSTANTS.SUBSCRIPTIONS_PATH}/${id}`)
          const updatedActiveSubscription = activeSubscriptions.filter(sub => sub.id !==id);
          setActiveSubscriptions(updatedActiveSubscription);
       } catch (error) {
-         console.error('Error deleting subscription:', error.response ? error.response.data : error.message);
-         setError('Error! Please try again.');
+         toast("error.message")
          }
-             
+      };
   
-};
+
   return (
     <div>
       <nav 
@@ -90,9 +93,9 @@ function Subscription() {
       
       <div>
          <h3 style={{paddingLeft:'7%', paddingTop:'3%'}}>Active subscriptions</h3>
-         <table  style={{paddingLeft:'4%', width:'90%'}}> 
+         <table  style={{ width: '80%', margin: '0 5%' }}> 
             <thead>
-               <tr>
+               <tr >
                   <th style={{width:'5%'}}>#</th>
                   <th style={{width:'15%'}}>Service</th>
                   <th style={{width:'10%'}}>Amount</th>
@@ -103,19 +106,19 @@ function Subscription() {
                   <th style={{width:'10%'}}>Actions</th>           
                </tr>
             </thead>
-            <tbody>
+            <tbody >
                {activeSubscriptions.map((subscription, index) => (
-                  <tr key={subscription.id}>
-                     <td>{index + 1}</td>
-                     <td>{subscription.serviceName}</td>
-                     <td>${subscription.amount}</td>
-                     <td>{subscription.period}</td>
-                     <td>{subscription.nextBilling}</td>
-                     <td>{subscription.status}</td>
-                     <td>{subscription.payment}</td>
-                     <td> 
+                  <tr key={subscription.id} >
+                     <td style={{textAlign:'center', paddingBottom:'2%'}}>{index + 1}</td>
+                     <td style={{textAlign:'center'}}>{subscription.service}</td>
+                     <td style={{textAlign:'center'}}>${subscription.amount}</td>
+                     <td style={{textAlign:'center'}}>{subscription.period}</td>
+                     <td style={{textAlign:'center'}}>{subscription.nextBilling}</td>
+                     <td style={{textAlign:'center'}}>{subscription.status}</td>
+                     <td style={{textAlign:'center'}}>{subscription.last_four_digits}</td>
+                     <td style={{textAlign:'center'}}> 
                         <button onClick={()=> handleEditSubscription(subscription.id)}> Edit</button>
-                        <button onClick={()=>handleDeleteSubscription(subscription.id)}>Delete</button>
+                        <button onClick={()=> handleDeleteSubscription(subscription.id)}>Delete</button>
                      </td>
                      
                   </tr>
@@ -140,12 +143,12 @@ function Subscription() {
                {inActiveSubscriptions.map((subscription, index) => (
                   <tr key={subscription.id}>
                      <td>{index + 1}</td>
-                     <td>{subscription.serviceName}</td>
+                     <td>{subscription.service}</td>
                      <td>${subscription.amount}</td>
                      <td>{subscription.period}</td>
                      <td>{subscription.nextBilling}</td>
                      <td>{subscription.status}</td>
-                     <td>{subscription.payment}</td>
+                     <td>{subscription.last_four_digits}</td>
                      <td> 
                         {/* <button onClick={handleReactivate}> Edit</button> */}
                      </td>

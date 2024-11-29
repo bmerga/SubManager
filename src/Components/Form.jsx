@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {styled, Paper, Box,TextField, MenuItem } from '@mui/material';
-import {useNavigate } from 'react-router'
-import axios from 'axios';
+import {useLocation, useNavigate} from 'react-router'
+import { authApi } from './api/authApi';
+import CONSTANTS from '../constants';
+import { toast } from 'react-toastify';
 
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -15,47 +17,53 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 }));
 
 function Form() {
-  const [serviceName, setServiceName] = useState('');
-  const [amount, setAmount] = useState('');
-  const [period, setPeriod] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [status, setStatus] = useState('active');
-  const [payment, setPayment] = useState('');
-  const [error, setError] = useState('')
-  
-  const navigate = useNavigate();
-  const handleHomeInClick = () => {navigate('/')}
+    const initData = {
+        service: "",
+        period: "",
+        amount: "",
+        status: "",
+        userEmail: "",
+        last_four_digits: "",
+        start_date: ""
+            }; 
+const [subscriptionData, setSubscriptionData] = useState(initData);
+    
+const navigate = useNavigate();
+const location = useLocation();
 
-  const handleNewSubscription = async (e) => {
+useEffect(() => {
+    if (location.state && location.state.subscription) {
+        setSubscriptionData(location.state.subscription);
+    }
+}, [location.state]);
+
+const handleChange = (e) => {
+setSubscriptionData({...subscriptionData, [e.target.name]: e.target.value})
+}; 
+
+const handleHomeInClick = () => {navigate('/')}
+
+const handleNewSubscription = async (e) => {
     e.preventDefault();
-     
-    try {        
-        const response = await axios.post('https://zafrino-5e5b8bdb623d.herokuapp.com/api/subscription', {
-           serviceName, amount, period, startDate, status, payment           
-                });
-        console.log('New subscription successful!', response.data);
+    try {   
+        if (subscriptionData.id) {
+            const response = await authApi.put(`${CONSTANTS.SUBSCRIPTIONS_PATH}/${subscriptionData.id}`, 
+                { data: subscriptionData });
+                toast("Updated")
+        }   else {
+            const response = await authApi.post(CONSTANTS.SUBSCRIPTIONS_PATH, {data: subscriptionData});
+        toast("Sucessfull!")
+        }        
         navigate('/subscription');
-        setServiceName('');
-        setAmount('');
-        setPeriod('');
-        setStartDate('');
-        setStatus('Inactive');
-        setPayment('');
+        setSubscriptionData(initData);
         } catch (error) {
-        console.error('Error creating new subscription:', error.response ? error.response.data: error.message);
-            setError('Error! Please try again.');
+        toast(error.message)
         }
     };
 
    const handleCancel = (e) => {
     e.preventDefault();
-        
-    setServiceName('');
-    setAmount('');
-    setPeriod('');
-    setStartDate('');
-    setStatus('Inactive');
-    setPayment('');
+    setSubscriptionData(initData);
 };
 
 return (
@@ -73,10 +81,11 @@ return (
                     <TextField      
                     sx={{borderRadius:'15px'}}                                    
                         fullWidth 
+                        name='service'
                         placeholder='Enter service name'
                         variant="outlined" 
-                        value={serviceName} 
-                        onChange={(e) => setServiceName(e.target.value)} 
+                        value={subscriptionData.service} //For unidirectional data flow
+                        onChange={handleChange} 
                         required
                     />
 
@@ -85,11 +94,12 @@ return (
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Amount</div> 
                     <TextField 
                         fullWidth 
+                        name='amount'
                         placeholder= '$0.00'
                         variant="outlined" 
                         type="number"
-                        value={amount} 
-                        onChange={(e) => setAmount(e.target.value)} 
+                        value={subscriptionData.amount} 
+                        onChange={handleChange} 
                         required
                     />
                 </Box>
@@ -97,9 +107,10 @@ return (
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}>Period</div> 
                     <TextField select
                         fullWidth 
+                        name='period'
                         variant="outlined" 
-                        value={period} 
-                        onChange={(e) => setPeriod(e.target.value)} 
+                        value={subscriptionData.period} 
+                        onChange={handleChange} 
                         required
                         >
                         <MenuItem value='monthly'>Monthly</MenuItem>
@@ -111,11 +122,12 @@ return (
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}>Start date</div> 
                     <TextField 
                         fullWidth 
+                        name='start_date'
                         placeholder='mm/dd/yy'
                         variant="outlined" 
                         type="date"
-                        value={startDate} 
-                        onChange={(e) => setStartDate(e.target.value)} 
+                        value={subscriptionData.start_date} 
+                        onChange={handleChange} 
                         required
                     />
                 </Box>
@@ -124,9 +136,10 @@ return (
                     <TextField 
                     select
                         fullWidth 
+                        name='status'
                         variant="outlined" 
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value)}
+                        value={subscriptionData.status}
+                        onChange={handleChange}
                         required
                     >
                         <MenuItem value='active'>Active</MenuItem>
@@ -134,14 +147,28 @@ return (
                         </TextField>    
                 </Box>
                 <Box marginBottom={3}>
+                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Email</div> 
+                    <TextField 
+                        fullWidth 
+                        name='userEmail'
+                        placeholder= 'Enter your Email'
+                        variant="outlined" 
+                        type="email"
+                        value={subscriptionData.userEmail} 
+                        onChange={handleChange} 
+                        required
+                    />
+                </Box>
+                <Box marginBottom={3}>
                 <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Last 4 Digits</div> 
                     <TextField 
                         fullWidth 
+                        name='last_four_digits'
                         placeholder='Enter last 4 digits'
                         variant="outlined" 
                         type="number"
-                        value={payment} 
-                        onChange={(e) => setPayment(e.target.value)} 
+                        value={subscriptionData.last_four_digits} 
+                        onChange={handleChange} 
                         required
                     />
                 </Box>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Paper, Box, styled, TextField} from '@mui/material';
+import { Paper, Box, styled, TextField, Typography} from '@mui/material';
 import { useNavigate } from 'react-router';
 import { publicApi } from './api/publicApi';
 import CONSTANTS from '../constants';
@@ -26,11 +26,13 @@ function SignUp() {
     const handleAboutUsClick = () => {navigate('/aboutus')}
     const handleSignInClick = () => {navigate('/signin')}
     const handleSignUpClick = () => {navigate('/signup')}
-
+    
+    // const SubmitButton = () => {}
+    
     const handleChange = (e) => {
         setSignUpData({...signUpData, [e.target.name]: e.target.value})
     };
-
+console.log(signUpData)
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {        
@@ -55,11 +57,11 @@ function SignUp() {
           </div>
        </nav> 
        <div>
-          <StyledPaper style={{ padding: '20px', width: '30%', margin: 'auto' }}>
+          <StyledPaper style={{ padding: '20px', width: '30%', margin: 'auto', fontWeight: 'bolder' }}>
              <form onSubmit={handleSubmit} >
                 <Box paddingBottom={2}>
-                <div style={{paddingBottom:'10px', fontWeight:'bolder', borderRadius:'50'}}> First Name</div> 
-                   <TextField 
+                    <TextField 
+                      label = "First Name"
                       fullWidth 
                       id='firstname'
                       name='firstname'
@@ -69,9 +71,9 @@ function SignUp() {
                       required 
                     />
                 </Box>
-                <Box marginBottom={2}>
-                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Last Name</div> 
-                    <TextField 
+                <Box marginBottom={2} >
+                   <TextField 
+                        label = "Last Name"
                         fullWidth 
                         id='lastname'
                         name='lastname'
@@ -82,8 +84,8 @@ function SignUp() {
                     />
                 </Box>
                 <Box marginBottom={2}>
-                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Email</div> 
                     <TextField 
+                        label = "Email"
                         fullWidth 
                         id='email'
                         name='email'
@@ -95,8 +97,8 @@ function SignUp() {
                     />
                 </Box>
                 <Box marginBottom={2}>
-                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Username</div> 
                     <TextField 
+                        label = "User Name"
                         fullWidth 
                         id='username'
                         name='username'
@@ -107,8 +109,8 @@ function SignUp() {
                     />
                 </Box>
                 <Box marginBottom={2}>
-                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Password</div> 
                     <TextField 
+                        label = "password"
                         fullWidth 
                         id='password'
                         name='password'
@@ -119,13 +121,13 @@ function SignUp() {
                         onChange={handleChange} 
                         required
                     />
-                    <p> Password must be at least 8 characters</p>
+                    <Typography> Password must be at least 8 characters</Typography>
                 </Box>
                 <button style={{ background:'#1BE619', width:'100%', height:'45px', fontWeight:'bolder', border:'none', borderRadius:'8px', cursor:'pointer'}}  type="submit" >Create Account</button>
             </form>
-            <div style={{ marginTop: '10px', textAlign:'center' }}>
-                Already have an account? <button onClick={handleSignInClick} style={{border:'none', cursor:'pointer', fontWeight:'bolder'}}>Sign In</button>
-            </div>
+            <Typography sx={{ marginTop: '10px', textAlign:'center' }}> Already have an account?
+            <button onClick={handleSignInClick} style={{border:'none', cursor:'pointer', fontWeight:'bolder'}}>Sign In</button>
+            </Typography>
         </StyledPaper>
         </div> 
     </div>

@@ -1,17 +1,22 @@
 import React, {useState} from 'react';
-import { Paper, Box, styled, TextField} from '@mui/material';
+import { Paper, Box, styled, TextField, Typography, Container, Checkbox, FormControlLabel} from '@mui/material';
 import { useNavigate } from 'react-router';
 import { publicApi } from './api/publicApi';
 import CONSTANTS from '../constants';
 import { toast } from 'react-toastify';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-   
+    padding: theme.spacing(4),
+    margin: 'auto',
+    width: '40%',
+    [theme.breakpoints.down('sm')]: {
+        width: '90%',
+    },
  }));
 
 function SignIn() {
     const initData = {
-        identifier: "",
+        email: "",
         password: ""
     }
 
@@ -34,7 +39,7 @@ function SignIn() {
           toast('Succesfull!')
           localStorage.setItem("acme_jwt", response.data.jwt);
           localStorage.setItem("userEmail", response.data.user.email);
-          navigate("/subscription")
+          navigate("/form")
           
         } catch (error) {
             toast(error.message);
@@ -43,43 +48,45 @@ function SignIn() {
             
     
   return (
-    <div>
+    <Container>
        <nav>
-       <div style={{display:'flex', flexDirection:'row', gap:'62%'}}>
-       <p><button onClick={handleHomeInClick} style={{paddingLeft:'45px', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Acme Subscription Manager</button></p>
-       <div style={{display:'flex', justifyContent:'flex-end', gap:'10px'}}>
-          <button onClick={handleAboutUsClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> About Us</button>
-          <button onClick={handleSignInClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder' }}> Sign In</button>
-          <button onClick={handleSignUpClick} style={{ borderRadius:'8px', background: '#1BE619', width: '95px', height: '45px', border: 'none', cursor:'pointer', fontWeight:'bolder'}}> Start Free</button>
-      </div>
-      </div>
-        </nav> 
-        <div style={{textAlign:'center', padding:'19px'}}>
-            <div style={{fontSize:'28px', fontWeight:'bolder'}}>Sign in to your account</div>
-            <p style={{fontSize:'18px'}}>Manage all your subscriptions in one place</p>
-        </div>
-        <div>
-        <StyledPaper style={{ padding: '20px', width: '30%', margin: 'auto' }}>
+          <div sx={{display:'flex', flexDirection:'row', gap:'62%'}}>
+             <Typography><button onClick={handleHomeInClick} style={{paddingLeft:'45px', border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> Acme Subscription Manager</button></Typography>
+             <Typography sx={{display:'flex', justifyContent:'flex-end', gap:'10px'}}>
+                <button onClick={handleAboutUsClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder'}}> About Us</button>
+                <button onClick={handleSignInClick} style={{  border: 'none', background: 'transparent' ,cursor:'pointer', fontWeight:'bolder' }}> Sign In</button>
+                <button onClick={handleSignUpClick} style={{ borderRadius:'8px', background: '#1BE619', width: '95px', height: '45px', border: 'none', cursor:'pointer', fontWeight:'bolder'}}> Start Free</button>
+            </Typography>
+          </div>
+       </nav> 
+       <Box sx={{marginBottom:'3%'}}>
+          <Typography sx={{textAlign:'center', fontSize:'36px', fontWeight:'bolder'}}>Sign in to your account</Typography>
+          <Typography sx={{textAlign:'center', fontSize:'16px', color:'#1BE619'}}>Manage all your subscriptions in one place</Typography>
+       </Box>
+        
+        
+        <StyledPaper elevation={3} >
             <form onSubmit={handleSubmit} >
-                <Box marginBottom={2}>
-                <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Email</div> 
-                    <TextField 
+                <Box marginBottom={4}>
+                   <TextField 
+                        label = "Email"
                         fullWidth 
                         placeholder='Enter your Email'
                         type="email"
-                        name='identifier'
+                        name='email'
                         variant="outlined" 
-                        value={signInData.identifier} 
+                        value={signInData.email} 
                         onChange={handleChange} 
+                        required
                     />
                 </Box>
-                <Box marginBottom={2}>
-                <div style={{display:'flex', gap:'50%'}}>
-                    <div style={{paddingBottom:'10px', fontWeight:'bolder'}}> Password</div> 
+                <Box marginBottom={4}>
+                <Typography sx={{display:'flex', gap:'50%'}}>
                     <button style={{paddingBottom:'10px', fontWeight:'bolder', color: '#85B786', border:'none', cursor:'pointer'}}> Forgot Password?</button> 
-                </div>
+                </Typography>
                 
                     <TextField 
+                        label= "Password"
                         fullWidth 
                         placeholder='Enter your password'
                         variant="outlined" 
@@ -87,15 +94,14 @@ function SignIn() {
                         name='password'
                         value={signInData.password} 
                         onChange={handleChange} 
+                        required
                     />
                 </Box>
-                {/* <div style={{display:'flex', alignItems:'center'}}> 
-                <input
-                    type='checkbox'
-                    checked ={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}/>
-                    Remember me
-                    </div> */}
+                <label >
+                    <input type="checkbox" style={{marginBottom:'5%'}}/>      
+                    Remember Me
+                </label>  
+                          
                 <button style={{ 
                     background:'#1BE619', 
                     width:'100%', 
@@ -108,8 +114,8 @@ function SignIn() {
                     Sign In
                 </button>
             </form>
-            <div style={{ 
-                marginTop: '10px', 
+            <Typography style={{ 
+                marginTop: '5%', 
                 textAlign:'center' }}>
                 Don't have an account? 
                 <button onClick={handleSignUpClick} style={{
@@ -118,10 +124,10 @@ function SignIn() {
                     fontWeight:'bolder'}}>
                         Sign Up
                 </button>
-            </div>
+            </Typography>
         </StyledPaper>
-        </div> 
-    </div>
+        </Container> 
+    
   )
 }
 
